@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tahanan 💖 | Our Special Page</title>
+
+<style>
+/* 🌸 General Page Style */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top left, #ffd6e8, #ffc6d3, #ffb6c1);
+  overflow-x: hidden;
+  color: #4a4a4a;
+}
+
+/* 💕 Floating Hearts */
+.heart {
+  position: fixed;
+  color: #ffb6c1;
+  font-size: 20px;
+  opacity: 0.7;
+  animation: floatHearts 8s linear infinite;
+  z-index: 0;
+}
+.heart.purple { color: #d3a6ff; opacity: 0.6; }
+
+@keyframes floatHearts {
+  0% { transform: translateY(100vh) scale(0.8); opacity: 0.8; }
+  100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+}
+
+/* 🌺 Floating Flowers */
+.flower {
+  position: fixed;
+  font-size: 24px;
+  opacity: 0.8;
+  animation: floatFlowers 10s linear infinite;
+  z-index: 0;
+}
+
+.flower.pink { color: #ff99c8; }
+.flower.purple { color: #d8b4ff; }
+.flower.yellow { color: #fff6a6; }
+
+@keyframes floatFlowers {
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
+
+/* 💕 Header */
+header {
+  text-align: center;
+  background-color: #ff8fa3;
+  color: white;
+  padding: 25px 10px;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 3px 15px rgba(255,105,135,0.3);
+  position: relative;
+  z-index: 2;
+}
+
+/* 🎶 Spotify */
+.spotify {
+  display: flex;
+  justify-content: center;
+  margin: 25px 0;
+  z-index: 2;
+}
+.spotify iframe {
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(255, 100, 130, 0.3);
+}
+
+/* 💌 Love Card */
+.letter-card {
+  width: 420px;
+  background: linear-gradient(to bottom, #ff8fa3 50%, #ffb6c1 50%);
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(255, 105, 135, 0.4);
+  margin: 50px auto;
+  padding: 30px;
+  animation: float 4s ease-in-out infinite;
+  z-index: 2;
+}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.message {
+  text-align: center;
+  color: white;
+  font-size: 18px;
+  line-height: 1.7;
+  animation: fadeIn 2s ease-in-out;
+}
+.signature {
+  text-align: right;
+  margin-top: 15px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* 🕰️ Counter */
+.since-section {
+  text-align: center;
+  margin: 30px auto;
+  padding: 20px;
+  width: fit-content;
+  background: rgba(255, 182, 193, 0.8);
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(255, 100, 130, 0.3);
+  color: #6b337b;
+  font-size: 18px;
+  font-weight: 500;
+}
+.since-section h2 {
+  margin-bottom: 10px;
+  font-size: 22px;
+  color: #c86bff;
+}
+#counter, #months {
+  font-size: 20px;
+  font-weight: bold;
+  color: #7a2c91;
+  margin-top: 5px;
+}
+
+/* 📸 Gallery */
+.gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin: 40px auto;
+  padding: 10px;
+  z-index: 2;
+}
+.gallery img {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(255, 100, 130, 0.3);
+  transition: transform 0.4s ease;
+  border: 3px solid #d3a6ff;
+  cursor: pointer;
+}
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* 💬 Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 200, 220, 0.8);
+  backdrop-filter: blur(6px);
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+.modal-content {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  text-align: center;
+  width: 80%;
+  max-width: 400px;
+  position: relative;
+  animation: pop 0.5s ease-in-out;
+  box-shadow:
+    0 0 20px rgba(255, 105, 135, 0.5),
+    0 0 40px rgba(211, 166, 255, 0.4),
+    0 0 60px rgba(255, 182, 193, 0.3);
+}
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 22px;
+  color: #ff6fa8;
+  cursor: pointer;
+}
+.modal h3 {
+  color: #c86bff;
+  font-size: 20px;
+}
+.modal p {
+  color: #4a4a4a;
+  font-size: 16px;
+  margin-top: 10px;
+}
+.modal-heart {
+  position: absolute;
+  font-size: 20px;
+  opacity: 0.7;
+  animation: fly 2s ease-in-out forwards;
+}
+@keyframes fly {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
+}
+
+/* 🩷 Footer */
+footer {
+  background-color: #ff8fa3;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 50px;
+  font-size: 14px;
+}
+</style>
+</head>
+<body>
+
+<!-- 💜 Floating Hearts -->
+<span class="heart" style="left:10%; animation-delay:0s;">💖</span>
+<span class="heart purple" style="left:25%; animation-delay:2s;">💜</span>
+<span class="heart" style="left:40%; animation-delay:1s;">💗</span>
+<span class="heart purple" style="left:60%; animation-delay:3s;">💜</span>
+<span class="heart" style="left:80%; animation-delay:4s;">💖</span>
+
+<!-- 🌸 Floating Flowers -->
+<span class="flower pink" style="left:5%; animation-delay:1s;">🌸</span>
+<span class="flower purple" style="left:20%; animation-delay:3s;">🌺</span>
+<span class="flower yellow" style="left:35%; animation-delay:5s;">🌼</span>
+<span class="flower pink" style="left:55%; animation-delay:2s;">🌸</span>
+<span class="flower purple" style="left:75%; animation-delay:4s;">🌺</span>
+<span class="flower yellow" style="left:90%; animation-delay:6s;">🌼</span>
+
+<header>💞 Welcome to Our Tahanan 💞</header>
+
+<!-- 🎶 Spotify -->
+<div class="spotify">
+  <iframe 
+    src="https://open.spotify.com/embed/track/5CUQnKjA6nlteCnxMKsjIu?utm_source=generator"
+    width="400" height="152" frameBorder="0"
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+  </iframe>
+</div>
+
+<!-- 💌 Love Letter -->
+<div class="letter-card">
+  <div class="message">
+    “You are my safe place — my <b>Tahanan</b>.  
+    Every moment with you feels like home.  
+    Your smile, your laugh, your heart —  
+    they are my favorite parts of every day.”  
+  </div>
+  <div class="signature">— From: <b>JomJom 💖</b></div>
+</div>
+
+<!-- 🕰️ Counter -->
+<div class="since-section">
+  <h2>💜 Still Counting Since November 1, 2024 💜</h2>
+  <div id="counter">Calculating...</div>
+  <div id="months"></div>
+</div>
+
+<!-- 📸 Gallery -->
+<section class="gallery">
+  <img src="https://raw.githubusercontent.com/Bink1n/image/refs/heads/main/1.jfif" alt="Us 💞" onclick="showMessage('First Picture 💖', 'This was the day everything felt perfect — just you and me.')">
+  <img src="https://raw.githubusercontent.com/Bink1n/image/refs/heads/main/2.jfif" alt="Sweet moments 💕" onclick="showMessage('Sweet Moments 💕', 'Every smile here reminds me how lucky I am.')">
+  <img src="https://raw.githubusercontent.com/Bink1n/image/refs/heads/main/3.jfif" alt="Love 💜" onclick="showMessage('Forever 💜', 'No matter what, you are my home — always.')">
+</section>
+
+<!-- 💬 Modal -->
+<div class="modal" id="messageModal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">×</span>
+    <h3 id="modalTitle"></h3>
+    <p id="modalText"></p>
+  </div>
+</div>
+
+<footer>© 2025 Made with 💖 by JomJom for Baby ko</footer>
+
+<script>
+function updateCounter() {
+  const startDate = new Date('November 1, 2024 00:00:00');
+  const now = new Date();
+  const diff = now - startDate;
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+  document.getElementById('counter').innerHTML =
+    `${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds 💖`;
+  let years = now.getFullYear() - startDate.getFullYear();
+  let months = now.getMonth() - startDate.getMonth();
+  if (months < 0) { years--; months += 12; }
+  document.getElementById('months').innerHTML =
+    `That's ${years} year(s) and ${months} month(s) together 💜`;
+}
+setInterval(updateCounter, 1000);
+updateCounter();
+
+/* 💬 Modal + Floating Hearts + Click Hearts */
+function showMessage(title, text) {
+  const modal = document.getElementById("messageModal");
+  document.getElementById("modalTitle").innerText = title;
+  document.getElementById("modalText").innerText = text;
+  modal.style.display = "flex";
+
+  // 💞 Floating hearts inside modal
+  for (let i = 0; i < 10; i++) {
+    const heart = document.createElement("span");
+    heart.innerHTML = Math.random() > 0.5 ? "💖" : "💜";
+    heart.classList.add("modal-heart");
+    heart.style.left = Math.random() * 100 + "%";
+    heart.style.top = "80%";
+    heart.style.animationDelay = (Math.random() * 0.5) + "s";
+    modal.appendChild(heart);
+    setTimeout(() => heart.remove(), 2000);
+  }
+}
+
+function closeModal() {
+  document.getElementById("messageModal").style.display = "none";
+}
+
+/* 💞 Hearts appear anywhere you click */
+document.addEventListener("click", (e) => {
+  const heart = document.createElement("span");
+  heart.textContent = Math.random() > 0.5 ? "💖" : "💜";
+  heart.style.position = "fixed";
+  heart.style.left = e.clientX + "px";
+  heart.style.top = e.clientY + "px";
+  heart.style.fontSize = (Math.random() * 15 + 15) + "px";
+  heart.style.opacity = "0.8";
+  heart.style.pointerEvents = "none";
+  heart.style.animation = "fly 2s ease-in-out forwards";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 2000);
+});
+</script>
+</body>
+</html>
